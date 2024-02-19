@@ -37,7 +37,7 @@ public class Upload : ICommand
         {
             remotePluginInfo = await workshopClient.GetPluginInfo(localPluginInfo.Guid);
         }
-        catch
+        catch (PluginNotFoundException)
         {
             //the plugin  has never been published to the workshop. tell the user and exit
             await console.Output.WriteLineAsync("Plugin has never been published to the workshop, skipping");
@@ -50,18 +50,20 @@ public class Upload : ICommand
             await console.Output.WriteLineAsync($"Local version {localPluginInfo.Version} is not newer than remote version {remoteVersion}");
             return;
         }
-        
+
         await console.Output.WriteLineAsync($"Uploading {localPluginInfo.Name} v{localPluginInfo.Version}...");
 
         using var zipStream = new MemoryStream();
-        using var archive = new ZipArchive(zipStream, ZipArchiveMode.Create, true);
-        var files = Directory.EnumerateFiles(PluginFolder, "*", SearchOption.AllDirectories);
-        foreach (var file in files)
+        using (var archive = new ZipArchive(zipStream, ZipArchiveMode.Create, true))
         {
-            var entry = archive.CreateEntry(Path.GetRelativePath(PluginFolder, file));
-            await using var entryStream = entry.Open();
-            await using var fileStream = File.OpenRead(file);
-            await fileStream.CopyToAsync(entryStream);
+            var files = Directory.EnumerateFiles(PluginFolder, "*", SearchOption.AllDirectories);
+            foreach (var file in files)
+            {
+                var entry = archive.CreateEntry(Path.GetRelativePath(PluginFolder, file));
+                await using var entryStream = entry.Open();
+                await using var fileStream = File.OpenRead(file);
+                await fileStream.CopyToAsync(entryStream);
+            }
         }
 
         zipStream.Seek(0, SeekOrigin.Begin);

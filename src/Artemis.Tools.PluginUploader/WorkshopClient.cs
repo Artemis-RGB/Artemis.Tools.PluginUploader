@@ -62,7 +62,7 @@ public class WorkshopClient : IDisposable
         var result = await GetPluginInfos(pluginGuid);
         var pluginInfo = result.FirstOrDefault(x => x.pluginGuid == pluginGuid.ToString());
         if (pluginInfo == null)
-            throw new Exception("Plugin not found");
+            throw new PluginNotFoundException(pluginGuid);
 
         return pluginInfo;
     }
@@ -70,9 +70,10 @@ public class WorkshopClient : IDisposable
     public async Task PublishPlugin(Stream pluginZip, long entryId, CancellationToken cancellationToken = default)
     {
         pluginZip.Seek(0, SeekOrigin.Begin);
-        var content = new MultipartFormDataContent();
         var streamContent = new StreamContent(pluginZip);
         streamContent.Headers.ContentType = new MediaTypeHeaderValue("application/zip");
+        
+        var content = new MultipartFormDataContent();
         content.Add(streamContent, "file", "plugin.zip");
 
         var response = await _httpClient.PostAsync($"releases/upload/{entryId}", content, cancellationToken);
