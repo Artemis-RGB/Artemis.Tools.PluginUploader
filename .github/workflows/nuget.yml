@@ -1,0 +1,20 @@
+name: Publish
+
+on: 
+  push:
+      tags:
+      - '*'
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v2
+
+      - name: Pack
+        run: dotnet pack -c Release src/Artemis.Tools.PluginUploader/Artemis.Tools.PluginUploader.csproj
+
+      - name: Upload
+        run: dotnet nuget push src/Artemis.Tools.PluginUploader/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate

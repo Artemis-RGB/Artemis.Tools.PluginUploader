@@ -6,6 +6,17 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+    
+    <PropertyGroup>
+        <PackageVersion>1.0.0</PackageVersion>
+        <Authors>diogotr7</Authors>
+        <PackageId>ArtemisRGB.Tools.PluginUploader</PackageId>
+        <Description>ArtemisRGB plugin uploader tool</Description>
+        <PackageTags>artemis;plugin;tool</PackageTags>
+        
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>artemis-plugin-uploader</ToolCommandName>
+    </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="CliFx" Version="2.3.5" />
