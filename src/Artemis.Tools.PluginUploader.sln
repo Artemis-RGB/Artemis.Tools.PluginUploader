@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artemis.Tools.PluginUploader", "Artemis.Tools.PluginUploader\Artemis.Tools.PluginUploader.csproj", "{8526CEBB-FA6C-483A-9417-A4F6D0D4B3CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8526CEBB-FA6C-483A-9417-A4F6D0D4B3CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8526CEBB-FA6C-483A-9417-A4F6D0D4B3CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8526CEBB-FA6C-483A-9417-A4F6D0D4B3CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8526CEBB-FA6C-483A-9417-A4F6D0D4B3CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

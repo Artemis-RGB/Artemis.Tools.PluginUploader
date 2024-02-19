@@ -1,0 +1,13 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "upload": {
+      "commandName": "Project",
+      "commandLineArgs": "upload --pat \"YOUR_PAT\" -f C:\\Development\\Artemis\\Artemis.Plugins.diogotr7\\src\\Artemis.Plugins.LayerBrushes.Chroma\\bin\\x64\\Debug\\net7.0-windows"
+    },
+    "uploadAll": {
+      "commandName": "Project",
+      "commandLineArgs": "upload-all --pat \"YOUR_PAT\" -f C:\\Development\\Artemis\\Artemis.Plugins.diogotr7\\src"
+    }
+  }
+}
